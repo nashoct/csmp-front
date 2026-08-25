@@ -1,0 +1,7 @@
+{
+  "name": "csmp-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
