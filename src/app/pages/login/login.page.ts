@@ -23,8 +23,13 @@ export class LoginPage implements OnInit {
   }
 
   onLogin() {
-    console.log('User:', this.user);
-    this.loginService.login("nashoct@hotmail.com", "1234");
-    // Aquí iría la lógica de autenticación
+    this.loginService.login(this.user.email, this.user.password).subscribe({
+      next: (ok) => {
+        if (ok) {
+          this.router.navigateByUrl('/home');
+        }
+      },
+      error: () => {},
+    });
   }
 }

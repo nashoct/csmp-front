@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Login } from '../models/login.model'
 import { AuthResponse } from '../interfaces/authResponse'
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { from, Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { SecureStoragePlugin } from 'capacitor-secure-storage-plugin';
 import { Storage } from '@ionic/storage-angular'
@@ -20,28 +21,27 @@ export class LoginService {
   token: string = "";
 
   constructor(private http: HttpClient, private storage: Storage, private platform: Platform) {
-    console.log('Servicio inicializado');
     this.isNative = this.platform.is('ios') || this.platform.is('android');
     this.ready = this.storage.create();
   }
 
-  login ( email: string, password: string) {
-    const data = { email, password }
+  login(email: string, password: string): Observable<boolean> {
+    const data = { email, password };
 
-    this.http.post<AuthResponse>(`${ URL }/auth/signin`, data ).subscribe( (resp: AuthResponse) => {
-      console.log(resp);
-      if (resp.status == 'OK') {
-        this.saveToken(resp.token);
-      } else {
-        this.storage.clear();
-      }
-    })
+    return this.http.post<AuthResponse>(`${URL}/auth/signin`, data, { observe: 'response' }).pipe(
+      switchMap((response) => {
+        const token = response.body?.token;
+        if (response.status === 200 && token) {
+          this.token = token;
+          return from(this.saveToken(token)).pipe(map(() => true));
+        }
+        return of(false);
+      })
+    );
   }
 
   async saveToken(token: string) {
-
     if (this.isNative) {
-      //await this.storage.set('token', token);
       await SecureStoragePlugin.set({ key: 'token', value: token });
     } else {
       await this.ready;
