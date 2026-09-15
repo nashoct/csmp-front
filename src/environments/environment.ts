@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  URL: "https://www.ictapp.es/api"
-  //URL: "http://localhost:8080/api"
+  //URL: "https://www.ictapp.es/api"
+  URL: "http://localhost:8081/api"
 };
 
 /*

@@ -1,31 +1,33 @@
-<ion-menu contentId="home-content" side="start">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menú</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item>Inicio</ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
+<ion-split-pane contentId="home-content" when="lg">
+  <ion-menu contentId="home-content" side="start">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item>Inicio</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 
-<div class="ion-page" id="home-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Inicio</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="ion-page" id="home-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Inicio</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-  <ion-content [fullscreen]="true">
-    <div class="home-welcome">
-      <p class="home-welcome__eyebrow">CSMP</p>
-      <h1>Bienvenido</h1>
-      <p>Has iniciado sesión correctamente. Usa el menú para navegar.</p>
-    </div>
-  </ion-content>
-</div>
+    <ion-content [fullscreen]="true">
+      <div class="home-welcome">
+        <p class="home-welcome__eyebrow">CSMP</p>
+        <h1>Bienvenido</h1>
+        <p>Has iniciado sesión correctamente. Usa el menú para navegar.</p>
+      </div>
+    </ion-content>
+  </div>
+</ion-split-pane>

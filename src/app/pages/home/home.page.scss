@@ -3,6 +3,14 @@
   height: 100%;
 }
 
+// En pantallas grandes el split-pane muestra el menú fijo, por lo que
+// el botón de menú deja de ser necesario.
+@media (min-width: 992px) {
+  ion-menu-button {
+    display: none;
+  }
+}
+
 ion-content {
   --background: #f4f7fb;
 }

@@ -7,6 +7,7 @@ import {
   IonList,
   IonMenu,
   IonMenuButton,
+  IonSplitPane,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
@@ -23,6 +24,7 @@ import {
     IonList,
     IonMenu,
     IonMenuButton,
+    IonSplitPane,
     IonTitle,
     IonToolbar,
   ],
