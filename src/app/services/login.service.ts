@@ -49,4 +49,18 @@ export class LoginService {
     }
   }
 
+  async getToken(): Promise<string> {
+    if (this.token) {
+      return this.token;
+    }
+    if (this.isNative) {
+      const { value } = await SecureStoragePlugin.get({ key: 'token' }).catch(() => ({ value: '' }));
+      this.token = value ?? '';
+    } else {
+      await this.ready;
+      this.token = (await this.storage.get('token')) ?? '';
+    }
+    return this.token;
+  }
+
 }
