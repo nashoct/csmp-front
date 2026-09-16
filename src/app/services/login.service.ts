@@ -63,4 +63,14 @@ export class LoginService {
     return this.token;
   }
 
+  async logout(): Promise<void> {
+    this.token = '';
+    if (this.isNative) {
+      await SecureStoragePlugin.remove({ key: 'token' }).catch(() => {});
+    } else {
+      await this.ready;
+      await this.storage.remove('token');
+    }
+  }
+
 }

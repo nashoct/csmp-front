@@ -1,2 +1,139 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+//
+// Palette adapted from the Material Admin 3.0 template
+// (https://m2a.avidtemplates.com). Design tokens:
+//   brand blue  #1e91ff · body bg #f3f3f3 · text #63738c
+//   headings    #3e4959 · borders #f1f2f4
+
+:root {
+  // Typography
+  --ion-font-family: "Roboto", "Google Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Helvetica, Arial, sans-serif;
+
+  // Surfaces
+  --ion-background-color: #f3f3f3;
+  --ion-background-color-rgb: 243, 243, 243;
+  --ion-text-color: #63738c;
+  --ion-text-color-rgb: 99, 115, 140;
+
+  --ion-border-color: #f1f2f4;
+
+  // Toolbar / cards
+  --ion-toolbar-background: #ffffff;
+  --ion-toolbar-color: #3e4959;
+  --ion-item-background: #ffffff;
+  --ion-card-background: #ffffff;
+
+  // Primary — brand blue
+  --ion-color-primary: #1e91ff;
+  --ion-color-primary-rgb: 30, 145, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #1a80e0;
+  --ion-color-primary-tint: #359cff;
+
+  // Secondary — slate
+  --ion-color-secondary: #4f5762;
+  --ion-color-secondary-rgb: 79, 87, 98;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #464d56;
+  --ion-color-secondary-tint: #616872;
+
+  // Tertiary — info cyan
+  --ion-color-tertiary: #00bcd4;
+  --ion-color-tertiary-rgb: 0, 188, 212;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #00a5bb;
+  --ion-color-tertiary-tint: #1ac3d8;
+
+  // Success — green
+  --ion-color-success: #10b981;
+  --ion-color-success-rgb: 16, 185, 129;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #0ea372;
+  --ion-color-success-tint: #28c08e;
+
+  // Warning — amber
+  --ion-color-warning: #fea84c;
+  --ion-color-warning-rgb: 254, 168, 76;
+  --ion-color-warning-contrast: #3e4959;
+  --ion-color-warning-contrast-rgb: 62, 73, 89;
+  --ion-color-warning-shade: #e09443;
+  --ion-color-warning-tint: #feb15e;
+
+  // Danger — red
+  --ion-color-danger: #ff6b68;
+  --ion-color-danger-rgb: 255, 107, 104;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #e05e5c;
+  --ion-color-danger-tint: #ff7a77;
+
+  // Neutrals
+  --ion-color-medium: #92929d;
+  --ion-color-medium-rgb: 146, 146, 157;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #80808a;
+  --ion-color-medium-tint: #9d9da7;
+
+  --ion-color-light: #f3f3f3;
+  --ion-color-light-rgb: 243, 243, 243;
+  --ion-color-light-contrast: #3e4959;
+  --ion-color-light-contrast-rgb: 62, 73, 89;
+  --ion-color-light-shade: #d6d6d6;
+  --ion-color-light-tint: #f4f4f4;
+
+  --ion-color-dark: #3e4959;
+  --ion-color-dark-rgb: 62, 73, 89;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #37404e;
+  --ion-color-dark-tint: #515b6a;
+
+  // Shared design tokens used across pages
+  --ma-brand: #1e91ff;
+  --ma-brand-shade: #1a80e0;
+  --ma-surface: #ffffff;
+  --ma-bg: #f3f3f3;
+  --ma-text: #63738c;
+  --ma-heading: #3e4959;
+  --ma-border: #f1f2f4;
+  --ma-input-bg: #f8fafc;
+  --ma-input-border: #e3e7ee;
+  --ma-input-border-hover: #cdd5e0;
+  --ma-muted: #9aa6b8;
+  --ma-radius: 0.6rem;
+  --ma-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ma-shadow-lg: 0 12px 30px rgba(30, 145, 255, 0.14);
+}
+
+// Dark mode — activated by ThemeService toggling `.ion-palette-dark` on <html>
+.ion-palette-dark {
+  --ion-background-color: #16191d;
+  --ion-background-color-rgb: 22, 25, 29;
+  --ion-text-color: #aab4c2;
+  --ion-text-color-rgb: 170, 180, 194;
+
+  --ion-border-color: #2a2f36;
+
+  --ion-toolbar-background: #1f232a;
+  --ion-toolbar-color: #e6e9ee;
+  --ion-item-background: #1f232a;
+  --ion-card-background: #1f232a;
+
+  --ma-surface: #1f232a;
+  --ma-bg: #16191d;
+  --ma-text: #aab4c2;
+  --ma-heading: #e6e9ee;
+  --ma-border: #2a2f36;
+  --ma-input-bg: #171b20;
+  --ma-input-border: #2f353d;
+  --ma-input-border-hover: #3c434c;
+  --ma-muted: #7c8797;
+  --ma-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}

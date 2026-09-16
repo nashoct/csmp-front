@@ -1,33 +1,169 @@
-<ion-split-pane contentId="home-content" when="lg">
-  <ion-menu contentId="home-content" side="start">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>{{ fullName }}</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item>Inicio</ion-item>
-      </ion-list>
+<div class="home-layout">
+  <ion-header class="home-header">
+    <ion-toolbar class="home-header__toolbar">
+      <ion-buttons slot="start">
+        <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title></ion-title>
+      <ion-buttons slot="end">
+        <button
+          class="home-header__settings"
+          type="button"
+          (click)="toggleTheme()"
+          [attr.aria-label]="isDark ? 'Activar modo claro' : 'Activar modo oscuro'"
+        >
+          <span class="material-symbols-rounded">{{ isDark ? 'light_mode' : 'dark_mode' }}</span>
+        </button>
+        <ion-menu-toggle menu="settings-menu">
+          <button class="home-header__settings" type="button" aria-label="Abrir ajustes">
+            <span class="material-symbols-rounded">settings</span>
+          </button>
+        </ion-menu-toggle>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-split-pane contentId="home-content" when="lg" class="home-split">
+    <ion-menu contentId="home-content" side="start" menuId="main-menu" class="home-menu">
+    <ion-content class="home-menu__content">
+      <button id="profile-trigger" class="home-menu__profile" type="button">
+        <span class="home-menu__avatar">{{ (fullName || 'U').charAt(0) }}</span>
+        <div class="home-menu__profile-info">
+          <strong>{{ fullName }}</strong>
+          <small>{{ email }}</small>
+        </div>
+        <span class="material-symbols-rounded home-menu__profile-arrow">keyboard_arrow_right</span>
+      </button>
+
+      <ion-popover trigger="profile-trigger" [dismissOnSelect]="true" class="profile-popover">
+        <ng-template>
+          <ion-content>
+            <ion-list lines="none">
+              <ion-item button detail="false" class="home-menu__item">
+                <span class="material-symbols-rounded" slot="start">account_circle</span>
+                Perfil
+              </ion-item>
+              <ion-item button detail="false" class="home-menu__item">
+                <span class="material-symbols-rounded" slot="start">settings</span>
+                Preferencias
+              </ion-item>
+              <ion-item button detail="false" class="home-menu__item home-menu__item--danger" (click)="logout()">
+                <span class="material-symbols-rounded" slot="start">logout</span>
+                Cerrar sesión
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
     </ion-content>
   </ion-menu>
 
   <div class="ion-page" id="home-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Inicio</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content [fullscreen]="true">
-      <div class="home-welcome">
-        <p class="home-welcome__eyebrow">CSMP</p>
-        <h1>Bienvenido</h1>
+    <ion-content [fullscreen]="true" class="home-content">
+      <section class="home-welcome">
+        <p class="home-welcome__eyebrow">CSMP · Dashboard</p>
+        <h1>Bienvenido{{ fullName ? ', ' + fullName : '' }}</h1>
         <p>Has iniciado sesión correctamente. Usa el menú para navegar.</p>
-      </div>
+      </section>
+
+      <section class="stat-grid">
+        <article class="stat-card">
+          <span class="stat-card__icon stat-card__icon--primary material-symbols-rounded">
+            trending_up
+          </span>
+          <div class="stat-card__body">
+            <h3>43 283</h3>
+            <p>Órdenes completadas</p>
+          </div>
+          <span class="stat-card__badge stat-card__badge--up">+2.23%</span>
+        </article>
+
+        <article class="stat-card">
+          <span class="stat-card__icon stat-card__icon--success material-symbols-rounded">
+            payments
+          </span>
+          <div class="stat-card__body">
+            <h3>$324 091</h3>
+            <p>Ingresos totales</p>
+          </div>
+          <span class="stat-card__badge stat-card__badge--up">+3.47%</span>
+        </article>
+
+        <article class="stat-card">
+          <span class="stat-card__icon stat-card__icon--warning material-symbols-rounded">
+            shopping_bag
+          </span>
+          <div class="stat-card__body">
+            <h3>4 532</h3>
+            <p>Compras finalizadas</p>
+          </div>
+          <span class="stat-card__badge stat-card__badge--up">+5.32%</span>
+        </article>
+
+        <article class="stat-card">
+          <span class="stat-card__icon stat-card__icon--danger material-symbols-rounded">
+            assignment_return
+          </span>
+          <div class="stat-card__body">
+            <h3>2 091</h3>
+            <p>Solicitudes de devolución</p>
+          </div>
+          <span class="stat-card__badge stat-card__badge--down">-0.98%</span>
+        </article>
+      </section>
     </ion-content>
   </div>
-</ion-split-pane>
+  </ion-split-pane>
+</div>
+
+<ion-menu contentId="home-content" side="end" menuId="settings-menu" class="home-menu settings-menu">
+  <ion-header>
+    <ion-toolbar class="home-menu__toolbar">
+      <ion-title>
+        <span class="home-menu__brand">
+          <span class="material-symbols-rounded">settings</span>
+          Ajustes
+        </span>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="home-menu__content">
+    <p class="home-menu__section">Cuenta</p>
+    <ion-list lines="none">
+      <ion-menu-toggle menu="settings-menu">
+        <ion-item button class="home-menu__item" detail="false">
+          <span class="material-symbols-rounded" slot="start">person</span>
+          Perfil
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle menu="settings-menu">
+        <ion-item button class="home-menu__item" detail="false">
+          <span class="material-symbols-rounded" slot="start">notifications</span>
+          Notificaciones
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+
+    <p class="home-menu__section">Preferencias</p>
+    <ion-list lines="none">
+      <ion-menu-toggle menu="settings-menu">
+        <ion-item button class="home-menu__item" detail="false">
+          <span class="material-symbols-rounded" slot="start">palette</span>
+          Apariencia
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle menu="settings-menu">
+        <ion-item button class="home-menu__item" detail="false">
+          <span class="material-symbols-rounded" slot="start">language</span>
+          Idioma
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle menu="settings-menu">
+        <ion-item button class="home-menu__item home-menu__item--danger" detail="false">
+          <span class="material-symbols-rounded" slot="start">logout</span>
+          Cerrar sesión
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>

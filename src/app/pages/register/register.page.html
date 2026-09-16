@@ -1,13 +1,46 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="register-content">
+  <div class="register-shell">
+    <form class="register-card">
+      <header class="register-card__header">
+        <div class="register-card__brand">
+          <span class="material-symbols-rounded">dashboard</span>
+          <span>CSMP</span>
+        </div>
+        <p class="register-card__eyebrow">Empecemos</p>
+        <h2>Crear cuenta</h2>
+        <p class="register-card__subtitle">Completa tus datos para registrarte en la plataforma.</p>
+      </header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <label class="field">
+        <span>Nombre completo</span>
+        <div class="field__control">
+          <span class="material-symbols-rounded field__icon">person</span>
+          <input class="field__input" type="text" name="name" placeholder="Tu nombre" />
+        </div>
+      </label>
+
+      <label class="field">
+        <span>Correo electrónico</span>
+        <div class="field__control">
+          <span class="material-symbols-rounded field__icon">mail</span>
+          <input class="field__input" type="email" name="email" placeholder="example@example.com" />
+        </div>
+      </label>
+
+      <label class="field">
+        <span>Contraseña</span>
+        <div class="field__control">
+          <span class="material-symbols-rounded field__icon">lock</span>
+          <input class="field__input" type="password" name="password" placeholder="••••••••" />
+        </div>
+      </label>
+
+      <button class="register-submit" type="submit">Registrarme</button>
+
+      <p class="register-card__footer">
+        ¿Ya tienes cuenta?
+        <a routerLink="/login">Inicia sesión</a>
+      </p>
+    </form>
+  </div>
 </ion-content>
