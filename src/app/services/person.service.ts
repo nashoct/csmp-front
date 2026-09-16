@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { from, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { PersonInfo } from '../interfaces/personInfo';
-import { LoginService } from './login.service';
 
 const URL = environment.URL;
 
@@ -14,15 +12,10 @@ const URL = environment.URL;
 })
 export class PersonService {
 
-  constructor(private http: HttpClient, private loginService: LoginService) {}
+  constructor(private http: HttpClient) {}
 
   getInfo(): Observable<PersonInfo> {
-    return from(this.loginService.getToken()).pipe(
-      switchMap((token) => {
-        const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-        return this.http.get<PersonInfo>(`${URL}/person/info`, { headers });
-      })
-    );
+    return this.http.get<PersonInfo>(`${URL}/person/info`);
   }
 
 }
